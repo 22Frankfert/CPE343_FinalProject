@@ -1,6 +1,5 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import { handlerExpressParser } from "./lib/utils/error";
 
 
 // Route Import
@@ -15,7 +14,6 @@ app.use(express.raw());
 
 app.use(cookieParser());
 
-app.use(handlerExpressParser);
 
 // app.use("/api/status", apiStatus);
 // app.use("/api/user", userRoutes);
