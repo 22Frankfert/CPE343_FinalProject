@@ -1,12 +1,9 @@
 import express from "express";
 import cookieParser from "cookie-parser";
-import { handlerExpressParser } from "./lib/utils/error";
 
+import itemRouter from "./routes/item.route";
 
-// Route Import
-
-
-export const app = express();
+const app = express();
 
 // Config Middleware for parsing JSON request bodies
 app.use(express.json());
@@ -15,12 +12,7 @@ app.use(express.raw());
 
 app.use(cookieParser());
 
-app.use(handlerExpressParser);
-
-// app.use("/api/status", apiStatus);
-// app.use("/api/user", userRoutes);
-// app.use("/api/auth", authRoutes);
-
+app.use('/items', itemRouter)
 app.get("/", (req, res) => {
     res.send("Welcome to Redbiiddsun API! 🚀");
 });
