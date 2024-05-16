@@ -1,15 +1,14 @@
-import React from "react";
 import Item from "../model/ItemModel";
 
 interface ToDoItemProps {
-  item: Item
+  item: Item;
 }
 
 const ToDoItem = ({ item }: ToDoItemProps) => {
   return (
-    <div>
-      <div>{item.name}</div>
-      <div>Test</div>
+    <div className="flex flex-col p-2 border-2 rounded-lg ">
+      <p className="font-semibold text-xl">{item.name}</p>
+      <p className="">{item.tag}</p>
     </div>
   );
 };
