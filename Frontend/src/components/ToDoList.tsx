@@ -1,14 +1,15 @@
 import ToDoItem from "./ToDoItem";
 import Item from "../model/ItemModel";
+import { ScheduledTag, TaskTag } from "../model/Tag";
 
 const ToDoList = () => {
-  
+
   // items dummy
   const listClassItems = [
-    new Item("Item 1", "task"), //In this declaration we can use abstract class for "tag"
-    new Item("Item 2", "Some Date"),
-    new Item("Item 3", "random"),
-    new Item("Item 4", "temp"),
+    new Item("Item 1", new TaskTag('red', 'urgent')), //In this declaration we can use abstract class for "tag"
+    new Item("Item 2", new ScheduledTag('green', '01/01/2024')),
+    // new Item("Item 3", "random"),
+    // new Item("Item 4", "temp"),
   ];
 
   return (
