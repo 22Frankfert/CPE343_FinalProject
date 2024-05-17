@@ -1,9 +1,27 @@
+import AddItem from "./components/AddItem";
+import ToDoList from "./components/ToDoList";
+
 function App() {
   return (
     <>
-      <div className="h-screen flex flex-col justify-between border-2">
+      <div
+        className="
+        h-screen
+        flex
+        flex-col
+        items-center
+        p-24
+        bg-slate-600
+        gap-4"
+      >
         {/* Children here */}
-        <p className="font-bold">Hello World</p>
+        <div className="font-bold text-center text-3xl text-white">
+          To-Do-List
+        </div>
+        {/* Show List */}
+        <ToDoList />
+        {/* Add */}
+        <AddItem />
       </div>
     </>
   );
