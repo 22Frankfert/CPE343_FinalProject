@@ -9,7 +9,7 @@ const EditItem = () => {
       justify-center
       p-2
       rounded-md
-      hover:bg-neutral-300
+      hover:bg-neutral-400
     "
     >
       <FiEdit size={20}/>

@@ -1,14 +1,55 @@
+import React, { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 
-const AddItem = () => {
+interface AddTodoProps {
+  addTodo: (text: string) => void;
+}
+
+const AddItem: React.FC<AddTodoProps> = ({ addTodo }) => {
+  const [text, setText] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (text.trim()) {
+      addTodo(text);
+      setText("");
+    }
+  };
+
   return (
-    <button
+    <form
+      onSubmit={handleSubmit}
       className="
-    flex p-2 border-2 rounded-full hover:opacity-90 bg-white shadow-md
-    "
+      flex
+      items-center
+      gap-2
+      w-1/3
+      justify-center
+      "
     >
-      <IoMdAdd size={24}/>
-    </button>
+      <input
+        type="text"
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Add a new task"
+        className="p-2 rounded-md w-2/3"
+      />
+      <button
+        type="submit"
+        className="
+        flex
+        items-center
+        justify-center
+        size-7
+        rounded-full
+        hover:opacity-90
+        bg-white
+        shadow-md
+      "
+      >
+        <IoMdAdd size={24} />
+      </button>
+    </form>
   );
 };
 
