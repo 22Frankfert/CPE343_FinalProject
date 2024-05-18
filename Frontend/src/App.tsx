@@ -31,7 +31,7 @@ function App() {
     <>
       <div
         className="
-        h-screen
+        min-h-screen
         flex
         flex-col
         items-center
