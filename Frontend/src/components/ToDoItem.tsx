@@ -1,21 +1,59 @@
+import React from "react";
+import { Todo } from "../types/todo";
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
+import clsx from "clsx";
 
 interface ToDoItemProps {
-  item: number;
+  todo: Todo;
+  toggleTodo: (id: number) => void;
+  deleteTodo: (id: number) => void;
 }
 
-const ToDoItem = ({ item }: ToDoItemProps) => {
+const ToDoItem: React.FC<ToDoItemProps> = ({
+  todo,
+  toggleTodo,
+  deleteTodo,
+}) => {
   return (
-    <div className="flex p-2 border-2 rounded-lg justify-between ">
-      <div className="flex flex-col">
-        <p className="font-semibold text-xl">Item #{item}</p>
-        <p className="">Name {item}</p>
-        <p className="">Color {item}</p>
+    <div
+      className={clsx(
+        `
+        flex
+        px-4
+        py-2
+        rounded-lg
+        justify-between
+        items-center
+        shadow-lg
+        `,
+        todo.completed ? "bg-neutral-500 opacity-70" : "bg-neutral-300"
+      )}
+    >
+      <input
+        type="checkbox"
+        checked={todo.completed}
+        onChange={() => toggleTodo(todo.id)}
+        className="
+          size-6
+        "
+      />
+      <div className="flex flex-1 flex-col mx-8">
+        <p
+          className={clsx(
+            `
+            font-semibold
+            text-xl
+            `,
+            todo.completed ? "line-through" : "none"
+          )}
+        >
+          {todo.text}
+        </p>
       </div>
       <div className="flex flex-col justify-center gap-2">
         <EditItem />
-        <DeleteItem />
+        <DeleteItem todo={todo} deleteTodo={deleteTodo} />
       </div>
     </div>
   );
