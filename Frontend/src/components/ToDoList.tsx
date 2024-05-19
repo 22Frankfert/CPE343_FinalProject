@@ -1,9 +1,9 @@
 import React from "react";
-import { Todo } from "../types/todo";
+import { ITodo } from "../interfaces/todo";
 import ToDoItem from "./ToDoItem";
 
 interface TodoListProps {
-  todos: Todo[];
+  todos: ITodo[];
   toggleTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
 }

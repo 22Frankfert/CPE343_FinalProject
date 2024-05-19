@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import AddItem from "./components/AddItem";
 import ToDoList from "./components/ToDoList";
-import { Todo } from "./types/todo";
+import { ITodo } from "./interfaces/todo";
 import { todoService } from "./services/TodoService";
 
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<ITodo[]>([]);
   const todoServ = todoService;
 
   useEffect(() => {
@@ -43,7 +43,7 @@ function App() {
         <div className="font-bold text-center text-3xl text-white">
           To-Do-List
         </div>
-        <div className="border-2 w-1/3"/>
+        <div className="border-2 w-1/3" />
         {/* Add */}
         <AddItem addTodo={addTodo} />
         {/* Show List */}

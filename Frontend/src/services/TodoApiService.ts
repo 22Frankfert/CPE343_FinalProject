@@ -1,13 +1,13 @@
 //Waiting for API structure from backend
 /////
 
-import { Todo, TodoService } from "../types/todo";
+import { ITodo, TodoService } from "../interfaces/todo";
 
 class TodoApiService implements TodoService {
-  private todos: Todo[] = [];
+  private todos: ITodo[] = [];
 
   addTodo = (text: string): void => {
-    const newTodo: Todo = {
+    const newTodo: ITodo = {
       id: Date.now(),
       text,
       completed: false,
@@ -26,9 +26,9 @@ class TodoApiService implements TodoService {
     this.todos = this.todos.filter((todo) => todo.id !== id);
   };
 
-  getTodos = (): Todo[] => {
+  getTodos = (): ITodo[] => {
     return this.todos;
   };
 }
 
-export const todoApiService: TodoService = new TodoApiService()
+export const todoApiService: TodoService = new TodoApiService();

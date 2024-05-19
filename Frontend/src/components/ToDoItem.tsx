@@ -1,11 +1,11 @@
 import React from "react";
-import { Todo } from "../types/todo";
+import { ITodo } from "../interfaces/todo";
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
 import clsx from "clsx";
 
 interface ToDoItemProps {
-  todo: Todo;
+  todo: ITodo;
   toggleTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
 }

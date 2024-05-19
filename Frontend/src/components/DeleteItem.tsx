@@ -1,9 +1,9 @@
 import { FaTrash } from "react-icons/fa6";
-import { Todo } from "../types/todo";
+import { ITodo } from "../interfaces/todo";
 import React from "react";
 
 interface DeleteItemProps {
-  todo: Todo;
+  todo: ITodo;
   deleteTodo: (id: number) => void;
 }
 
