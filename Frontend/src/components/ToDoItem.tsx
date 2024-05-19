@@ -6,8 +6,8 @@ import clsx from "clsx";
 
 interface ToDoItemProps {
   todo: ITodo;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  toggleTodo: (id: number) => Promise<void>;
+  deleteTodo: (id: number) => Promise<void>;
 }
 
 const ToDoItem: React.FC<ToDoItemProps> = ({

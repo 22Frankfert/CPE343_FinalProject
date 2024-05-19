@@ -4,8 +4,8 @@ import ToDoItem from "./ToDoItem";
 
 interface TodoListProps {
   todos: ITodo[];
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  toggleTodo: (id: number) => Promise<void>;
+  deleteTodo: (id: number) => Promise<void>;
 }
 
 const ToDoList: React.FC<TodoListProps> = ({

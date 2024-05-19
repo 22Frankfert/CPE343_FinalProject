@@ -5,8 +5,8 @@ export interface ITodo {
 }
 
 export interface TodoService {
-  addTodo: (text: string) => void;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
-  getTodos: () => ITodo[];
+  addTodo: (text: string) => Promise<void>;
+  toggleTodo: (id: number) => Promise<void>;
+  deleteTodo: (id: number) => Promise<void>;
+  getTodos: () => Promise<ITodo[]>;
 }

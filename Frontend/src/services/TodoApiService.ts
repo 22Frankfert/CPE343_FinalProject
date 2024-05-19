@@ -6,7 +6,7 @@ import { ITodo, TodoService } from "../interfaces/todo";
 class TodoApiService implements TodoService {
   private todos: ITodo[] = [];
 
-  addTodo = (text: string): void => {
+  addTodo = async (text: string): Promise<void> => {
     const newTodo: ITodo = {
       id: Date.now(),
       text,
@@ -16,17 +16,17 @@ class TodoApiService implements TodoService {
     this.todos.push(newTodo);
   };
 
-  toggleTodo = (id: number): void => {
+  toggleTodo = async (id: number): Promise<void> => {
     this.todos = this.todos.map((todo) =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );
   };
 
-  deleteTodo = (id: number): void => {
+  deleteTodo = async (id: number): Promise<void> => {
     this.todos = this.todos.filter((todo) => todo.id !== id);
   };
 
-  getTodos = (): ITodo[] => {
+  getTodos = async (): Promise<ITodo[]> => {
     return this.todos;
   };
 }
