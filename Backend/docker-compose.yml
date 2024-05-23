@@ -10,7 +10,7 @@ services:
     environment:
       POSTGRES_DB: todolist
       POSTGRES_USER: admin
-      POSTGRES_PASSWORD: passoward
+      POSTGRES_PASSWORD: password
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
