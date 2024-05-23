@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import { ConfigModule } from '@nestjs/config';
 import { TodoModule } from './todo/todo.module';
+import { PrismaModule } from 'nestjs-prisma';
 
 @Module({
   imports: [
@@ -10,9 +10,10 @@ import { TodoModule } from './todo/todo.module';
       isGlobal: true,
       envFilePath: ['.env'],
     }),
+    PrismaModule.forRoot({ isGlobal: true }),
     TodoModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
