@@ -12,12 +12,12 @@ enum Status {
     Completed
 }
 
-model item {
+model Item {
     id        String    @id @default(uuid())
     title     String
     detail    String?
     status    Status @default(Pending)   
     scheduled DateTime?
-    
+
     create_at DateTime  @default(now())
 }
