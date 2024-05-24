@@ -6,7 +6,6 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function main() {
-  // create two dummy recipes
   const data = await prisma.item.upsert({
     where: { id: "5c885c27-dcac-425a-9ad2-00e2faa9bc5e" },
     update: {},
