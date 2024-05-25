@@ -3,10 +3,14 @@ import AddItem from "./components/AddItem";
 import ToDoList from "./components/ToDoList";
 import { Todo } from "./types/todo";
 import { todoService } from "./services/TodoService";
+import { Filter } from "./types/filter";
+import { CompletedFilter } from "./services/CompletedFilter";
+import { PendingFilter } from "./services/PendingFilter";
 
 function App() {
   const [todos, setTodos] = useState<Todo[]>([]);
   const todoServ = todoService;
+  const [filter, setFilter] = useState<Filter>(new CompletedFilter());
 
   useEffect(() => {
     setTodos(todoServ.getTodos());
@@ -26,6 +30,9 @@ function App() {
     todoServ.deleteTodo(id);
     setTodos([...todoServ.getTodos()]);
   };
+  const handleFilterChange = (completed: boolean) => {
+    setFilter(completed ? new CompletedFilter() : new PendingFilter()); // Change filter strategy based on user input
+  };
 
   return (
     <>
@@ -44,6 +51,8 @@ function App() {
           To-Do-List
         </div>
         <div className="border-2 w-1/3"/>
+        <button onClick={() => handleFilterChange(true)}>Show Completed</button>
+        <button onClick={() => handleFilterChange(false)}>Show Pending</button>
         {/* Add */}
         <AddItem addTodo={addTodo} />
         {/* Show List */}
@@ -51,6 +60,7 @@ function App() {
           todos={todos}
           toggleTodo={toggleTodo}
           deleteTodo={deleteTodo}
+          filter={filter}
         />
       </div>
     </>

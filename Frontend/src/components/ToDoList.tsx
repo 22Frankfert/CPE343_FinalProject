@@ -1,18 +1,22 @@
 import React from "react";
 import { Todo } from "../types/todo";
+import { Filter } from "../types/filter";
 import ToDoItem from "./ToDoItem";
 
 interface TodoListProps {
   todos: Todo[];
   toggleTodo: (id: number) => void;
   deleteTodo: (id: number) => void;
+  filter: Filter;
 }
 
 const ToDoList: React.FC<TodoListProps> = ({
   todos,
   toggleTodo,
   deleteTodo,
+  filter,
 }) => {
+  const filteredTodos = filter.filter(todos); 
   // items dummy
   // const listItems = [1, 2, 3, 4, 5];
 
@@ -23,7 +27,7 @@ const ToDoList: React.FC<TodoListProps> = ({
           ? listItems.map((item) => <ToDoItem key={item} item={item} />)
           : "Nothing to do yet!"} */}
         {todos.length > 0 ? (
-          todos.map((todo) => (
+          filteredTodos.map((todo) => (
             <ToDoItem
               key={todo.id}
               todo={todo}
