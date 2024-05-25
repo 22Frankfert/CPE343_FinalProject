@@ -2,16 +2,16 @@ import React, { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 
 interface AddTodoProps {
-  addTodo: (text: string) => void;
+  addTodo: (text: string) => Promise<void>;
 }
 
 const AddItem: React.FC<AddTodoProps> = ({ addTodo }) => {
   const [text, setText] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (text.trim()) {
-      addTodo(text);
+      await addTodo(text);
       setText("");
     }
   };

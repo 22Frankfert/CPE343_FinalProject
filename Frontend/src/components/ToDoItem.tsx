@@ -1,13 +1,13 @@
 import React from "react";
-import { Todo } from "../types/todo";
+import { ITodo } from "../interfaces/todo";
 import DeleteItem from "./DeleteItem";
 import EditItem from "./EditItem";
 import clsx from "clsx";
 
 interface ToDoItemProps {
-  todo: Todo;
-  toggleTodo: (id: number) => void;
-  deleteTodo: (id: number) => void;
+  todo: ITodo;
+  toggleTodo: (id: number) => Promise<void>;
+  deleteTodo: (id: number) => Promise<void>;
 }
 
 const ToDoItem: React.FC<ToDoItemProps> = ({
