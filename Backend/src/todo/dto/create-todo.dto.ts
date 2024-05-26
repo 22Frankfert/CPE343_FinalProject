@@ -1,5 +1,5 @@
 import { $Enums, Item } from '@prisma/client';
-import { IsDate, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsDateString, IsEnum, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 type CreateTodoType = Omit<Item, 'id' | 'create_at'>;
 
@@ -16,7 +16,7 @@ export class CreateTodoDto implements CreateTodoType {
   @IsOptional()
   status: $Enums.Status;
 
-  @IsDate()
+  @IsDateString()
   @IsOptional()
   scheduled: Date;
 }

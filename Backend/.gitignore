@@ -1,41 +1,53 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-*.swp
+# dependencies
+node_modules/
 
-pids
-logs
-results
-tmp
+#build output
+dist/
 
-# Build
-public/css/main.css
+# IDE
+/.idea
+/.awcache
+/.vscode
+/.devcontainer
+/.classpath
+/.project
+/.settings 
+*.code-workspace
 
-# Coverage reports
-coverage
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
 
-# API keys and secrets
-.env
+# bundle
+packages/**/*.d.ts
+packages/**/*.js
 
-# Dependency directory
-node_modules
-bower_components
-
-# Editors
-.idea
-*.iml
-
-# OS metadata
+# misc
 .DS_Store
-Thumbs.db
+lerna-debug.log
+npm-debug.log
+yarn-error.log
+/**/npm-debug.log
+/packages/**/.npmignore
+/packages/**/LICENSE
+*.tsbuildinfo
 
-# Ignore built ts files
-dist/**/*
+# example
+/quick-start
+/example_dist
+/example
 
-# ignore yarn.lock
-yarn.lock
+# tests
+/test
+/benchmarks/memory
+/coverage
+/.nyc_output
+/packages/graphql
+/benchmarks/memory
+build/config\.gypi
+
+.npmrc
+pnpm-lock.yaml
