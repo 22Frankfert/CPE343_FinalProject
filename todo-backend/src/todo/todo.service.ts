@@ -24,6 +24,9 @@ export class TodoService extends BaseService<Item> {
   }
 
   update(id: string, updateTodoDto: UpdateTodoDto): Promise<Item> {
+
+    updateTodoDto.scheduled = new Date(updateTodoDto.scheduled);
+
     return this.prismaService.item.update({
       where: { id },
       data: updateTodoDto,
