@@ -1,9 +1,6 @@
-//Waiting for API structure from backend
-/////
+import { ITodo, TodoService } from "../../interfaces/todo";
 
-import { ITodo, TodoService } from "../interfaces/todo";
-
-class TodoApiService implements TodoService {
+class TodoServiceImpl implements TodoService {
   private todos: ITodo[] = [];
 
   addTodo = async (text: string): Promise<void> => {
@@ -31,4 +28,4 @@ class TodoApiService implements TodoService {
   };
 }
 
-export const todoApiService: TodoService = new TodoApiService();
+export const todoService: TodoService = new TodoServiceImpl();

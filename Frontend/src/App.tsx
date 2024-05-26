@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import AddItem from "./components/AddItem";
 import ToDoList from "./components/ToDoList";
 import { ITodo } from "./interfaces/todo";
-import TodoServiceFactory from "./services/TodoServiceFactory";
+import TodoServiceFactory from "./services/todoservice/TodoServiceFactory";
 import FilterToggleSwitch from "./components/FilterSwitch";
 //import { FilterToggleSwitchProps } from "./interfaces/filterSwitch";
 
@@ -39,7 +39,7 @@ function App() {
     setTodos([...todos]);
   };
 
-  const filteredTodos = todos.filter(todo => {
+  const filteredTodos = todos.filter((todo) => {
     if (filter === "completed") return todo.completed;
     if (filter === "pending") return !todo.completed;
     return true; // 'all'
@@ -90,7 +90,6 @@ function App() {
           todos={filteredTodos}
           toggleTodo={toggleTodo}
           deleteTodo={deleteTodo}
-          
         />
       </div>
     </>
