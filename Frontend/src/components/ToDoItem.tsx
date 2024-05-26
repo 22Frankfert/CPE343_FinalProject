@@ -47,7 +47,7 @@ const ToDoItem: React.FC<ToDoItemProps> = ({
             todo.completed ? "line-through" : "none"
           )}
         >
-          {todo.text} - {todo.priority} - {todo.category}
+          {todo.text} - {todo.priority}
         </p>
       </div>
       <div className="flex flex-col justify-center gap-2">

@@ -19,9 +19,8 @@ function App() {
   const addTodo = async (
     text: string,
     priority: Priority,
-    category: string
   ) => {
-    await todoService.addTodo(text, priority, category);
+    await todoService.addTodo(text, priority);
     await fetchTodos();
   };
 

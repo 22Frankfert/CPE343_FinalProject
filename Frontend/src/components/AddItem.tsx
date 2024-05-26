@@ -6,22 +6,19 @@ interface AddTodoProps {
   addTodo: (
     text: string,
     priority: Priority,
-    category: string
   ) => Promise<void>;
 }
 
 const AddItem: React.FC<AddTodoProps> = ({ addTodo }) => {
   const [text, setText] = useState("");
   const [priority, setPriority] = useState<Priority>("low");
-  const [category, setCategory] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (text.trim()) {
-      await addTodo(text, priority, category);
+      await addTodo(text, priority);
       setText("");
       setPriority("low");
-      setCategory("");
     }
   };
 
@@ -51,13 +48,6 @@ const AddItem: React.FC<AddTodoProps> = ({ addTodo }) => {
         <option value="medium">Medium</option>
         <option value="high">High</option>
       </select>
-      <input
-        type="text"
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        placeholder="Category"
-        className="p-2 rounded-md w-2/3"
-      />
       <button
         type="submit"
         className="

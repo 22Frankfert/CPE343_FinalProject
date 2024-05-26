@@ -6,14 +6,12 @@ class TodoServiceImpl implements TodoService {
   addTodo = async (
     text: string,
     priority: Priority,
-    category: string
   ): Promise<void> => {
     const newTodo: ITodo = {
       id: Date.now(),
       text,
       completed: false,
       priority,
-      category,
     };
 
     this.todos.push(newTodo);
@@ -27,10 +25,9 @@ class TodoServiceImpl implements TodoService {
     id: number,
     text: string,
     priority: Priority,
-    category: string
   ): Promise<void> => {
     this.todos = this.todos.map((todo) =>
-      todo.id === id ? { ...todo, text, priority, category } : todo
+      todo.id === id ? { ...todo, text, priority } : todo
     );
   };
 
