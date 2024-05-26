@@ -49,19 +49,19 @@ export const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
   ) => {
     await todoService.addTodo(text, dueDate, priority);
     const todos = await todoService.getTodos();
-    setTodos(todos);
+    setTodos([...todos]);
   };
 
   const toggleTodo = async (id: number) => {
     await todoService.toggleTodo(id);
     const todos = await todoService.getTodos();
-    setTodos(todos);
+    setTodos([...todos]);
   };
 
   const deleteTodo = async (id: number) => {
     await todoService.deleteTodo(id);
     const todos = await todoService.getTodos();
-    setTodos(todos);
+    setTodos([...todos]);
   };
 
   const handleServiceSwitch = () => setUseApi(!useApi);
