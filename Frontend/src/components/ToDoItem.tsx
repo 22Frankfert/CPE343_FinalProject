@@ -1,7 +1,6 @@
 import React from "react";
 import { ITodo } from "../interfaces/todo";
 import DeleteItem from "./DeleteItem";
-import EditItem from "./EditItem";
 import clsx from "clsx";
 
 interface ToDoItemProps {
@@ -48,11 +47,10 @@ const ToDoItem: React.FC<ToDoItemProps> = ({
             todo.completed ? "line-through" : "none"
           )}
         >
-          {todo.text}
+          {todo.text} - {todo.priority} - {todo.category}
         </p>
       </div>
       <div className="flex flex-col justify-center gap-2">
-        <EditItem />
         <DeleteItem todo={todo} deleteTodo={deleteTodo} />
       </div>
     </div>

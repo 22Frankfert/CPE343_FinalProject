@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import AddItem from "./components/AddItem";
 import ToDoList from "./components/ToDoList";
-import { ITodo } from "./interfaces/todo";
+import { ITodo, Priority } from "./interfaces/todo";
 import TodoServiceFactory from "./services/todoservice/TodoServiceFactory";
 import FilterToggleSwitch from "./components/FilterSwitch";
 //import { FilterToggleSwitchProps } from "./interfaces/filterSwitch";
@@ -13,32 +13,35 @@ function App() {
   const [filter, setFilter] = useState<"all" | "completed" | "pending">("all");
 
   useEffect(() => {
-    async function fetchTodos() {
-      const todos = await todoService.getTodos();
-      setTodos(todos);
-    }
-
     fetchTodos();
   }, [useApi, todoService]);
 
-  const addTodo = async (text: string) => {
-    await todoService.addTodo(text);
-    const todos = await todoService.getTodos();
-    setTodos([...todos]);
+  const addTodo = async (
+    text: string,
+    priority: Priority,
+    category: string
+  ) => {
+    await todoService.addTodo(text, priority, category);
+    await fetchTodos();
   };
 
-  const toggleTodo = async (id: number) => {
-    await todoService.toggleTodo(id);
+  const fetchTodos = async () => {
     const todos = await todoService.getTodos();
     setTodos([...todos]);
   };
 
   const deleteTodo = async (id: number) => {
     await todoService.deleteTodo(id);
-    const todos = await todoService.getTodos();
-    setTodos([...todos]);
+    await fetchTodos();
   };
 
+  //toggling
+  const toggleTodo = async (id: number) => {
+    await todoService.toggleTodo(id);
+    await fetchTodos();
+  };
+
+  //filtering
   const filteredTodos = todos.filter((todo) => {
     if (filter === "completed") return todo.completed;
     if (filter === "pending") return !todo.completed;
@@ -47,6 +50,11 @@ function App() {
 
   const handleFilterChange = (newFilter: "all" | "completed" | "pending") => {
     setFilter(newFilter);
+  };
+
+  //Resource switching
+  const handleServiceSwitch = () => {
+    setUseApi(!useApi);
   };
 
   return (
@@ -70,7 +78,7 @@ function App() {
             Current Service: {useApi ? "Database" : "Local"}
           </span>
           <button
-            onClick={() => setUseApi(!useApi)}
+            onClick={handleServiceSwitch}
             className="
               p-2
               rounded-md
