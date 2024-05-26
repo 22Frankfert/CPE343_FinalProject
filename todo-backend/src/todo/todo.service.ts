@@ -12,6 +12,9 @@ export class TodoService extends BaseService<Item> {
   }
 
   create(createTodoDto: CreateTodoDto): Promise<Item> {
+    
+    createTodoDto.scheduled = new Date(createTodoDto.scheduled);
+
     return this.prismaService.item.create({ data: createTodoDto });
   }
 
