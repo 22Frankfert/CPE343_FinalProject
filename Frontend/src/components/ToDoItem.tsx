@@ -34,7 +34,7 @@ const ToDoItem: React.FC<ToDoItemProps> = ({ todo }) => {
           size-6
         "
       />
-      <div className="flex flex-1 flex-col mx-8">
+      <div className="flex flex-1 flex-col mx-8 gap-2">
         <p
           className={clsx(
             `
@@ -44,8 +44,17 @@ const ToDoItem: React.FC<ToDoItemProps> = ({ todo }) => {
             todo.completed ? "line-through" : "none"
           )}
         >
-          {todo.text} - {todo.priority}
+          {todo.text}
         </p>
+        <div className="flex gap-2">
+          <p className="px-1 py-0.5 rounded-lg bg-white">{todo.priority}</p>
+          {todo.dueDate && (
+            <p className="px-1 py-0.5 rounded-lg bg-white">
+              due: {todo.dueDate?.getDay()}/{todo.dueDate?.getMonth()}/
+              {todo.dueDate?.getFullYear()}
+            </p>
+          )}
+        </div>
       </div>
       <div className="flex flex-col justify-center gap-2">
         <DeleteItem todo={todo} deleteTodo={deleteTodo} />
