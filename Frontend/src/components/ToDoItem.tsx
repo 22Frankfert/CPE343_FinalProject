@@ -2,18 +2,15 @@ import React from "react";
 import { ITodo } from "../interfaces/todo";
 import DeleteItem from "./DeleteItem";
 import clsx from "clsx";
+import { useTodo } from "../context/TodoContext";
 
 interface ToDoItemProps {
   todo: ITodo;
-  toggleTodo: (id: number) => Promise<void>;
-  deleteTodo: (id: number) => Promise<void>;
 }
 
-const ToDoItem: React.FC<ToDoItemProps> = ({
-  todo,
-  toggleTodo,
-  deleteTodo,
-}) => {
+const ToDoItem: React.FC<ToDoItemProps> = ({ todo }) => {
+  const { toggleTodo, deleteTodo } = useTodo();
+
   return (
     <div
       className={clsx(

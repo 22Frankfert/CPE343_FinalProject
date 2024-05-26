@@ -1,23 +1,20 @@
 import React, { useState } from "react";
 import { IoMdAdd } from "react-icons/io";
 import { Priority } from "../interfaces/todo";
+import { useTodo } from "../context/TodoContext";
 
-interface AddTodoProps {
-  addTodo: (
-    text: string,
-    priority: Priority,
-  ) => Promise<void>;
-}
-
-const AddItem: React.FC<AddTodoProps> = ({ addTodo }) => {
+const AddItem: React.FC = () => {
   const [text, setText] = useState("");
+  const [dueDate, setDueDate] = useState<string>("");
   const [priority, setPriority] = useState<Priority>("low");
+  const { addTodo } = useTodo();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (text.trim()) {
-      await addTodo(text, priority);
+      await addTodo(text, dueDate ? new Date(dueDate) : undefined, priority);
       setText("");
+      setDueDate("");
       setPriority("low");
     }
   };
@@ -38,6 +35,11 @@ const AddItem: React.FC<AddTodoProps> = ({ addTodo }) => {
         onChange={(e) => setText(e.target.value)}
         placeholder="Add a new task"
         className="p-2 rounded-md w-2/3"
+      />
+      <input
+        type="date"
+        value={dueDate}
+        onChange={(e) => setDueDate(e.target.value)}
       />
       <select
         value={priority}
