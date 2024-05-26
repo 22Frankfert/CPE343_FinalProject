@@ -3,11 +3,14 @@ import AddItem from "./components/AddItem";
 import ToDoList from "./components/ToDoList";
 import { ITodo } from "./interfaces/todo";
 import TodoServiceFactory from "./services/TodoServiceFactory";
+import FilterToggleSwitch from "./components/FilterSwitch";
+//import { FilterToggleSwitchProps } from "./interfaces/filterSwitch";
 
 function App() {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [useApi, setUseApi] = useState(false);
   const todoService = TodoServiceFactory.createService(useApi);
+  const [filter, setFilter] = useState<"all" | "completed" | "pending">("all");
 
   useEffect(() => {
     async function fetchTodos() {
@@ -34,6 +37,16 @@ function App() {
     await todoService.deleteTodo(id);
     const todos = await todoService.getTodos();
     setTodos([...todos]);
+  };
+
+  const filteredTodos = todos.filter(todo => {
+    if (filter === "completed") return todo.completed;
+    if (filter === "pending") return !todo.completed;
+    return true; // 'all'
+  });
+
+  const handleFilterChange = (newFilter: "all" | "completed" | "pending") => {
+    setFilter(newFilter);
   };
 
   return (
@@ -69,13 +82,15 @@ function App() {
           </button>
         </div>
         <div className="border-2 w-1/3" />
+        <FilterToggleSwitch onFilterChange={handleFilterChange} />
         {/* Add */}
         <AddItem addTodo={addTodo} />
         {/* Show List */}
         <ToDoList
-          todos={todos}
+          todos={filteredTodos}
           toggleTodo={toggleTodo}
           deleteTodo={deleteTodo}
+          
         />
       </div>
     </>

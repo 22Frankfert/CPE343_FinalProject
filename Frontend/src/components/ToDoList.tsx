@@ -6,13 +6,16 @@ interface TodoListProps {
   todos: ITodo[];
   toggleTodo: (id: number) => Promise<void>;
   deleteTodo: (id: number) => Promise<void>;
+ 
 }
 
 const ToDoList: React.FC<TodoListProps> = ({
   todos,
   toggleTodo,
   deleteTodo,
+ 
 }) => {
+  //const filteredTodos = filter.filter(todos); 
   // items dummy
   // const listItems = [1, 2, 3, 4, 5];
 
