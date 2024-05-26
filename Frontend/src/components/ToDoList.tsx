@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ToDoItem from "./ToDoItem";
 import { useTodo } from "../context/TodoContext";
 import FilterToggleSwitch from "./FilterSwitch";
+import { FilterType } from "../interfaces/filter";
 
 const ToDoList: React.FC = () => {
   const { todos } = useTodo();
@@ -13,7 +14,7 @@ const ToDoList: React.FC = () => {
     return true; // 'all'
   });
 
-  const handleFilterChange = (newFilter: "all" | "completed" | "pending") => {
+  const handleFilterChange = (newFilter: FilterType) => {
     setFilter(newFilter);
   };
 

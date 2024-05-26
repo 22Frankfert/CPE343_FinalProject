@@ -1,15 +1,22 @@
 import React, { useState } from "react";
 import { FilterType } from "../interfaces/filter";
 
-const FilterToggleSwitch: React.FC = () => {
+interface FilterToggleSwitchProps {
+  onFilterChange: (filter: FilterType) => void;
+}
+
+const FilterToggleSwitch: React.FC<FilterToggleSwitchProps> = ({
+  onFilterChange,
+}) => {
   const [filter, setFilter] = useState<"all" | "completed" | "pending">("all");
 
   const handleChange = (filter: FilterType) => {
     setFilter(filter);
+    onFilterChange(filter);
   };
 
   return (
-    <div className="">
+    <div>
       <span className="font-semibold text-lg text-white mr-4">Filter: </span>
       <select
         value={filter}
