@@ -1,15 +1,18 @@
 //Waiting for API structure from backend
 /////
 
+import { IDatabase } from "../../interfaces/db";
 import { ITodo, Priority, TodoService } from "../../interfaces/todo";
 
-class TodoApiService implements TodoService {
+class TodoApiService implements TodoService, IDatabase {
   private todos: ITodo[] = [];
+
+  route = "";
 
   addTodo = async (
     text: string,
     dueDate?: Date,
-    priority?: Priority,
+    priority?: Priority
   ): Promise<void> => {
     const newTodo: ITodo = {
       id: Date.now(),
