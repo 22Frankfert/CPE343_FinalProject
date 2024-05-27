@@ -13,8 +13,8 @@ export class TodoService extends BaseService<Item> {
 
   create(createTodoDto: CreateTodoDto): Promise<Item> {
 
-    createTodoDto.dueDate = new Date(createTodoDto.dueDate);    
-    
+    if(createTodoDto.dueDate) createTodoDto.dueDate = new Date(createTodoDto.dueDate);   
+
     return this.prismaService.item.create({ data: createTodoDto });
   }
 
@@ -28,7 +28,7 @@ export class TodoService extends BaseService<Item> {
 
   update(id: string, updateTodoDto: UpdateTodoDto): Promise<Item> {
 
-    updateTodoDto.dueDate = new Date(updateTodoDto.dueDate);
+    if(updateTodoDto.dueDate) updateTodoDto.dueDate = new Date(updateTodoDto.dueDate);   
 
     return this.prismaService.item.update({
       where: { id },
