@@ -7,17 +7,18 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-enum Status {
-    Pending
-    Completed
+enum priorityEnum {
+    low
+    medium
+    high
 }
 
 model Item {
     id        String    @id @default(uuid())
-    title     String
-    detail    String?
-    status    Status @default(Pending)   
-    scheduled DateTime?
+    text     String
+    completed    Boolean @default(false)   
+    dueDate DateTime?
+    priority    priorityEnum?
 
     create_at DateTime  @default(now())
 }
