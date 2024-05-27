@@ -21,7 +21,7 @@ const ToDoList: React.FC = () => {
   return (
     <>
       <FilterToggleSwitch onFilterChange={handleFilterChange} />
-      <div className="flex flex-col p-4 gap-4">
+      <div className="flex flex-col mt-4 px-6 py-8 gap-4 h- overflow-y-scroll border-2 rounded-xl bg-neutral-50 shadow-md">
         {filteredTodos.length > 0 ? (
           filteredTodos.map((todo) => <ToDoItem key={todo.id} todo={todo} />)
         ) : (

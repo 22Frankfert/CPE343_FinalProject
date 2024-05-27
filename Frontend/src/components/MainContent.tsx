@@ -11,7 +11,8 @@ const MainContent: React.FC = () => {
         flex
         flex-col
         items-center
-        p-24
+        px-24
+        pt-16
         bg-slate-600
         gap-8
         "
@@ -24,7 +25,7 @@ const MainContent: React.FC = () => {
         <div className="border-2 w-full" />
       </div>
 
-      <div className="flex justify-center w-full gap-24">
+      <div className="flex justify-center h-[40rem] w-full gap-24">
         {/* Add */}
         <div className="flex flex-col items-center gap-4 w-1/3">
           <AddItem />
