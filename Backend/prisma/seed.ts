@@ -10,8 +10,7 @@ async function main() {
     where: { id: "5c885c27-dcac-425a-9ad2-00e2faa9bc5e" },
     update: {},
     create: {
-      title: 'OOAD Project',
-      detail: 'A simple SOLID project',
+      text: 'OOAD Project',
     },
   });
 
