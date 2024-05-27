@@ -14,11 +14,11 @@ enum priorityEnum {
 }
 
 model Item {
-    id        String    @id @default(uuid())
-    text     String
-    completed    Boolean @default(false)   
-    dueDate DateTime?
-    priority    priorityEnum?
+    id        String        @id @default(uuid())
+    text      String
+    completed Boolean       @default(false)
+    dueDate   DateTime?
+    priority  priorityEnum?
 
-    create_at DateTime  @default(now())
+    create_at DateTime @default(now())
 }
