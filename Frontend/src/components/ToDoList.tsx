@@ -21,7 +21,7 @@ const ToDoList: React.FC = () => {
   return (
     <>
       <FilterToggleSwitch onFilterChange={handleFilterChange} />
-      <div className="flex flex-col p-4 gap-4 w-1/3">
+      <div className="flex flex-col p-4 gap-4">
         {filteredTodos.length > 0 ? (
           filteredTodos.map((todo) => <ToDoItem key={todo.id} todo={todo} />)
         ) : (
@@ -33,7 +33,7 @@ const ToDoList: React.FC = () => {
             font-semibold
           "
           >
-            Nothing to do yet!
+            No Todos Here!
           </span>
         )}
       </div>

@@ -25,7 +25,7 @@ const AddItem: React.FC = () => {
       className="
       flex
       flex-col
-      gap-2
+      gap-4
       justify-center
       "
     >
@@ -34,35 +34,48 @@ const AddItem: React.FC = () => {
         value={text}
         onChange={(e) => setText(e.target.value)}
         placeholder="Add a new task"
-        className="p-2 rounded-md w-2/3"
+        className="p-2 rounded-md"
       />
-      <input
-        type="date"
-        value={dueDate}
-        onChange={(e) => setDueDate(e.target.value)}
-      />
-      <select
-        value={priority}
-        onChange={(e) => setPriority(e.target.value as Priority)}
-        className="w-2/3 rounded-md bg-white text-black p-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
-      >
-        <option value="low">Low</option>
-        <option value="medium">Medium</option>
-        <option value="high">High</option>
-      </select>
+      <div className="flex gap-4">
+        <div>
+          <p className="text-white">Due Date:</p>
+          <input
+            type="date"
+            value={dueDate}
+            onChange={(e) => setDueDate(e.target.value)}
+            className="p-2 rounded-md"
+          />
+        </div>
+        <div>
+          <p className="text-white">Priority: </p>
+          <select
+            value={priority}
+            onChange={(e) => setPriority(e.target.value as Priority)}
+            className="rounded-md bg-white text-black p-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          >
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+          </select>
+        </div>
+      </div>
       <button
         type="submit"
         className="
         flex
         items-center
         justify-center
-        size-7
+        mt-2
+        p-2
+        gap-2
         rounded-full
         hover:opacity-90
         bg-white
         shadow-md
+        self-center
       "
       >
+        Add Todo
         <IoMdAdd size={24} />
       </button>
     </form>

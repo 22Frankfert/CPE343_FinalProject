@@ -10,14 +10,14 @@ const MainContent: React.FC = () => {
       className="
         min-h-screen
         flex
-        justify-center
+        flex-col
+        items-center
         p-24
         bg-slate-600
-        gap-24
+        gap-8
         "
     >
-      {/* Children here */}
-      <div className="flex flex-col w-1/3 items-center gap-4">
+      <div className="flex flex-col gap-4 w-2/3 items-center">
         <div className="font-bold text-center text-3xl text-white">
           To-Do-List
         </div>
@@ -38,13 +38,18 @@ const MainContent: React.FC = () => {
           </button>
         </div>
         <div className="border-2 w-full" />
-        {/* Add */}
-        <AddItem />
       </div>
 
-      <div className="flex flex-col w-1/3">
+      <div className="flex justify-center w-full gap-24">
+        {/* Add */}
+        <div className="flex flex-col items-center gap-4 w-1/3">
+          <AddItem />
+        </div>
+
         {/* Show List */}
-        <ToDoList />
+        <div className="flex flex-col w-1/3">
+          <ToDoList />
+        </div>
       </div>
     </div>
   );
