@@ -1,10 +1,9 @@
 import React from "react";
-import { useTodo } from "../context/TodoContext";
 import AddItem from "./AddItem";
 import ToDoList from "./ToDoList";
+import ServiceSwitch from "./ServiceSwitch";
 
 const MainContent: React.FC = () => {
-  const { handleServiceSwitch, useApi } = useTodo();
   return (
     <div
       className="
@@ -21,22 +20,7 @@ const MainContent: React.FC = () => {
         <div className="font-bold text-center text-3xl text-white">
           To-Do-List
         </div>
-        <div className="flex flex-col gap-2">
-          <span className="text-white">
-            Current Service: {useApi ? "Database" : "Local"}
-          </span>
-          <button
-            onClick={handleServiceSwitch}
-            className="
-              p-2
-              rounded-md
-              bg-white
-              hover:bg-neutral-300
-            "
-          >
-            {useApi ? "Use Local Todo" : "Use Database Todo"}
-          </button>
-        </div>
+        <ServiceSwitch />
         <div className="border-2 w-full" />
       </div>
 
