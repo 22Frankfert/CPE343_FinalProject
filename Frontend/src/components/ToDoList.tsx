@@ -1,39 +1,29 @@
-import React from "react";
-import { ITodo } from "../interfaces/todo";
+import React, { useState } from "react";
 import ToDoItem from "./ToDoItem";
+import { useTodo } from "../context/TodoContext";
+import FilterToggleSwitch from "./FilterSwitch";
+import { FilterType } from "../interfaces/filter";
 
-interface TodoListProps {
-  todos: ITodo[];
-  toggleTodo: (id: number) => Promise<void>;
-  deleteTodo: (id: number) => Promise<void>;
- 
-}
+const ToDoList: React.FC = () => {
+  const { todos } = useTodo();
+  const [filter, setFilter] = useState<"all" | "completed" | "pending">("all");
 
-const ToDoList: React.FC<TodoListProps> = ({
-  todos,
-  toggleTodo,
-  deleteTodo,
- 
-}) => {
-  //const filteredTodos = filter.filter(todos); 
-  // items dummy
-  // const listItems = [1, 2, 3, 4, 5];
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "completed") return todo.completed;
+    if (filter === "pending") return !todo.completed;
+    return true; // 'all'
+  });
+
+  const handleFilterChange = (newFilter: FilterType) => {
+    setFilter(newFilter);
+  };
 
   return (
     <>
-      <div className="flex flex-col p-4 gap-4 w-1/3">
-        {/* {listItems.length > 0
-          ? listItems.map((item) => <ToDoItem key={item} item={item} />)
-          : "Nothing to do yet!"} */}
-        {todos.length > 0 ? (
-          todos.map((todo) => (
-            <ToDoItem
-              key={todo.id}
-              todo={todo}
-              toggleTodo={toggleTodo}
-              deleteTodo={deleteTodo}
-            />
-          ))
+      <FilterToggleSwitch onFilterChange={handleFilterChange} />
+      <div className="flex flex-col mt-4 px-6 py-8 gap-4 h- overflow-y-scroll border-2 rounded-xl bg-neutral-50 shadow-md">
+        {filteredTodos.length > 0 ? (
+          filteredTodos.map((todo) => <ToDoItem key={todo.id} todo={todo} />)
         ) : (
           <span
             className="
@@ -43,7 +33,7 @@ const ToDoList: React.FC<TodoListProps> = ({
             font-semibold
           "
           >
-            Nothing to do yet!
+            No Todos Here!
           </span>
         )}
       </div>

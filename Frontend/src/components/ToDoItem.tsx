@@ -1,20 +1,16 @@
 import React from "react";
 import { ITodo } from "../interfaces/todo";
 import DeleteItem from "./DeleteItem";
-import EditItem from "./EditItem";
 import clsx from "clsx";
+import { useTodo } from "../context/TodoContext";
 
 interface ToDoItemProps {
   todo: ITodo;
-  toggleTodo: (id: number) => Promise<void>;
-  deleteTodo: (id: number) => Promise<void>;
 }
 
-const ToDoItem: React.FC<ToDoItemProps> = ({
-  todo,
-  toggleTodo,
-  deleteTodo,
-}) => {
+const ToDoItem: React.FC<ToDoItemProps> = ({ todo }) => {
+  const { toggleTodo, deleteTodo } = useTodo();
+
   return (
     <div
       className={clsx(
@@ -38,7 +34,7 @@ const ToDoItem: React.FC<ToDoItemProps> = ({
           size-6
         "
       />
-      <div className="flex flex-1 flex-col mx-8">
+      <div className="flex flex-1 flex-col mx-8 gap-2">
         <p
           className={clsx(
             `
@@ -50,9 +46,17 @@ const ToDoItem: React.FC<ToDoItemProps> = ({
         >
           {todo.text}
         </p>
+        <div className="flex gap-2">
+          <p className="px-1 py-0.5 rounded-lg bg-white">{todo.priority}</p>
+          {todo.dueDate && (
+            <p className="px-1 py-0.5 rounded-lg bg-white">
+              due: {todo.dueDate?.getDay()}/{todo.dueDate?.getMonth()}/
+              {todo.dueDate?.getFullYear()}
+            </p>
+          )}
+        </div>
       </div>
       <div className="flex flex-col justify-center gap-2">
-        <EditItem />
         <DeleteItem todo={todo} deleteTodo={deleteTodo} />
       </div>
     </div>

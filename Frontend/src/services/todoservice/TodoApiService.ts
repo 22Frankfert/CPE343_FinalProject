@@ -1,33 +1,39 @@
 //Waiting for API structure from backend
 /////
 
-import { ITodo, TodoService } from "../../interfaces/todo";
+import { ITodo, Priority, TodoService } from "../../interfaces/todo";
 
 class TodoApiService implements TodoService {
   private todos: ITodo[] = [];
 
-  addTodo = async (text: string): Promise<void> => {
+  addTodo = async (
+    text: string,
+    dueDate?: Date,
+    priority?: Priority,
+  ): Promise<void> => {
     const newTodo: ITodo = {
       id: Date.now(),
       text,
       completed: false,
+      dueDate,
+      priority,
     };
 
     this.todos.push(newTodo);
   };
 
-  toggleTodo = async (id: number): Promise<void> => {
-    this.todos = this.todos.map((todo) =>
-      todo.id === id ? { ...todo, completed: !todo.completed } : todo
-    );
+  getTodos = async (): Promise<ITodo[]> => {
+    return this.todos;
   };
 
   deleteTodo = async (id: number): Promise<void> => {
     this.todos = this.todos.filter((todo) => todo.id !== id);
   };
 
-  getTodos = async (): Promise<ITodo[]> => {
-    return this.todos;
+  toggleTodo = async (id: number): Promise<void> => {
+    this.todos = this.todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
   };
 }
 
