@@ -29,7 +29,7 @@ const ToDoList: React.FC = () => {
             className="
             text-center
             text-xl
-            text-white
+            text-black
             font-semibold
           "
           >
