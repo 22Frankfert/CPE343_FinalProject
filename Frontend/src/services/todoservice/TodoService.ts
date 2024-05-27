@@ -9,7 +9,7 @@ class TodoServiceImpl implements TodoService {
     priority?: Priority
   ): Promise<void> => {
     const newTodo: ITodo = {
-      id: Date.now(),
+      id: Date.now().toString(),
       text,
       completed: false,
       dueDate,
@@ -23,11 +23,11 @@ class TodoServiceImpl implements TodoService {
     return this.todos;
   };
 
-  deleteTodo = async (id: number): Promise<void> => {
+  deleteTodo = async (id: string): Promise<void> => {
     this.todos = this.todos.filter((todo) => todo.id !== id);
   };
 
-  toggleTodo = async (id: number): Promise<void> => {
+  toggleTodo = async (id: string): Promise<void> => {
     this.todos = this.todos.map((todo) =>
       todo.id === id ? { ...todo, completed: !todo.completed } : todo
     );

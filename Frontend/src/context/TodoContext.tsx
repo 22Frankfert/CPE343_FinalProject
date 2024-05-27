@@ -15,8 +15,8 @@ interface TodoContextProps {
     dueDate?: Date,
     priority?: "low" | "medium" | "high"
   ) => Promise<void>;
-  toggleTodo: (id: number) => Promise<void>;
-  deleteTodo: (id: number) => Promise<void>;
+  toggleTodo: (id: string) => Promise<void>;
+  deleteTodo: (id: string) => Promise<void>;
   // markAllAsCompleted: () => Promise<void>;
   // setUseApi: React.Dispatch<React.SetStateAction<boolean>>;
   handleServiceSwitch: () => void;
@@ -52,13 +52,13 @@ export const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
     setTodos([...todos]);
   };
 
-  const toggleTodo = async (id: number) => {
+  const toggleTodo = async (id: string) => {
     await todoService.toggleTodo(id);
     const todos = await todoService.getTodos();
     setTodos([...todos]);
   };
 
-  const deleteTodo = async (id: number) => {
+  const deleteTodo = async (id: string) => {
     await todoService.deleteTodo(id);
     const todos = await todoService.getTodos();
     setTodos([...todos]);
