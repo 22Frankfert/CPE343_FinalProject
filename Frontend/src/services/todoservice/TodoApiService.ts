@@ -29,8 +29,11 @@ class TodoApiService implements TodoService, IDatabase {
 
   getTodos = async (): Promise<ITodo[]> => {
     const response = await fetch(this.route);
-    console.log(response)
-    return response.json();
+    const todos = await response.json();
+    return todos.map((todo: ITodo) => ({
+      ...todo,
+      dueDate: todo.dueDate ? new Date(todo.dueDate) : undefined,
+    }));
   };
 
   deleteTodo = async (id: string): Promise<void> => {
@@ -53,7 +56,11 @@ class TodoApiService implements TodoService, IDatabase {
 
   private async getTodoById(id: string): Promise<ITodo> {
     const response = await fetch(`${this.route}/${id}`);
-    return response.json();
+    const todo = await response.json();
+    return {
+      ...todo,
+      dueDate: todo.dueDate ? new Date(todo.dueDate) : undefined,
+    };
   }
 }
 
