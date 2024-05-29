@@ -1,6 +1,6 @@
 import { ITodo, Priority, TodoService } from "../../interfaces/todo";
 
-class TodoServiceImpl implements TodoService {
+class InMemoryService implements TodoService {
   private todos: ITodo[] = [];
 
   addTodo = async (
@@ -34,4 +34,4 @@ class TodoServiceImpl implements TodoService {
   };
 }
 
-export const todoService: TodoService = new TodoServiceImpl();
+export const inMemoryTodoService: TodoService = new InMemoryService();

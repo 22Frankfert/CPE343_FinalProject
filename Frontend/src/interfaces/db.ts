@@ -1,3 +1,3 @@
-export interface IDatabase {
+export interface ILocalService {
   route: string;
 }

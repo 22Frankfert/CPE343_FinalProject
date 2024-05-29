@@ -1,10 +1,7 @@
-//Waiting for API structure from backend
-/////
-
-import { IDatabase } from "../../interfaces/db";
+import { ILocalService } from "../../interfaces/db";
 import { ITodo, Priority, TodoService } from "../../interfaces/todo";
 
-class TodoApiService implements TodoService, IDatabase {
+class LocalDbService implements TodoService, ILocalService {
   route = "http://localhost:3000/todo";
 
   addTodo = async (
@@ -64,4 +61,4 @@ class TodoApiService implements TodoService, IDatabase {
   }
 }
 
-export const todoApiService: TodoService = new TodoApiService();
+export const localTodoService: TodoService = new LocalDbService();
