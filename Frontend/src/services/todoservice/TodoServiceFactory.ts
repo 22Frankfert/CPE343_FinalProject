@@ -1,6 +1,6 @@
 import { TodoService } from "../../interfaces/todo";
-import { localTodoService } from "./TodoApiService";
-import { inMemoryTodoService } from "./TodoService";
+import { localTodoService } from "./LocalDbService";
+import { inMemoryTodoService } from "./InMemoryService";
 
 class TodoServiceFactory {
   static createService(useApi: boolean): TodoService {
