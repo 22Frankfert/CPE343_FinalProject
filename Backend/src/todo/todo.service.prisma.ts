@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from 'nestjs-prisma';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
@@ -12,9 +12,6 @@ export class PrismaRepository extends BaseService<Item> {
   }
 
   create(createTodoDto: CreateTodoDto): Promise<Item> {
-    if (createTodoDto.dueDate)
-      createTodoDto.dueDate = new Date(createTodoDto.dueDate);
-
     return this.prismaService.item.create({
       data: createTodoDto,
     });
@@ -31,8 +28,6 @@ export class PrismaRepository extends BaseService<Item> {
   }
 
   update(id: string, updateTodoDto: UpdateTodoDto): Promise<Item> {
-    if (updateTodoDto.dueDate)
-      updateTodoDto.dueDate = new Date(updateTodoDto.dueDate);
 
     return this.prismaService.item.update({
       where: { id },
@@ -41,10 +36,6 @@ export class PrismaRepository extends BaseService<Item> {
   }
 
   async remove(id: string): Promise<Item> {
-    const exitingItem = await this.prismaService.item.findUnique({
-      where: { id },
-    });
-    if (!exitingItem) throw new NotFoundException('Item not found');
 
     return this.prismaService.item.delete({
       where: { id },
