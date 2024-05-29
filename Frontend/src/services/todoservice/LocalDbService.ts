@@ -34,10 +34,10 @@ class LocalDbService implements TodoService, ILocalService {
   };
 
   deleteTodo = async (id: string): Promise<void> => {
-    await fetch(`${this.route}/${id}`),
-      {
-        method: "DELETE",
-      };
+    console.log("here", "testing");
+    await fetch(`${this.route}/${id}`, {
+      method: "DELETE",
+    });
   };
 
   toggleTodo = async (id: string): Promise<void> => {
