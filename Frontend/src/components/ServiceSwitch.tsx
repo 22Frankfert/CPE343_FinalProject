@@ -5,7 +5,7 @@ const ServiceSwitch = () => {
   return (
     <div className="flex flex-col gap-2">
       <span className="text-white">
-        Current Service: {useApi ? "Database" : "Local"}
+        Current Service: {useApi ? "Local Database" : "In Memory"}
       </span>
       <button
         onClick={handleServiceSwitch}
@@ -16,7 +16,7 @@ const ServiceSwitch = () => {
               hover:bg-neutral-300
             "
       >
-        {useApi ? "Use Local Todo" : "Use Database Todo"}
+        {useApi ? "Use In Memory" : "Use Local Database"}
       </button>
     </div>
   );
