@@ -1,10 +1,10 @@
 import { TodoService } from "../../interfaces/todo";
-import { todoApiService } from "./TodoApiService";
-import { todoService } from "./TodoService";
+import { localTodoService } from "./LocalDbService";
+import { inMemoryTodoService } from "./InMemoryService";
 
 class TodoServiceFactory {
   static createService(useApi: boolean): TodoService {
-    return useApi ? todoApiService : todoService;
+    return useApi ? localTodoService : inMemoryTodoService;
   }
 }
 

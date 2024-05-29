@@ -4,7 +4,7 @@ import React from "react";
 
 interface DeleteItemProps {
   todo: ITodo;
-  deleteTodo: (id: number) => Promise<void>;
+  deleteTodo: (id: string) => Promise<void>;
 }
 
 const DeleteItem: React.FC<DeleteItemProps> = ({ todo, deleteTodo }) => {
